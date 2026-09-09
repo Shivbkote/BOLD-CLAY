@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marama — Private Resort Design &amp; Build</title>
+<title>Bold Clay Studio  &amp; Build</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
@@ -225,7 +225,7 @@
 <header id="siteHeader">
   <div class="wrap">
     <nav>
-      <a href="#top" class="logo">MARA<span>MA</span></a>
+      <a href="#top" class="logo">Bold Clay <span>Studio</span></a>
       <div class="nav-links" id="navLinks">
         <a href="#philosophy">Philosophy</a>
         <a href="#process">Process</a>
@@ -250,7 +250,7 @@
           <button class="btn btn-tiny" id="replayBuild">Watch it rise again</button>
         </div>
       </div>
-      <p class="hero-side">Marama designs and constructs private resorts on the world's quietest coastlines — from first site walk to opening day, with our own architects and our own builders.</p>
+      <p class="hero-side">Bold Clay Studio and constructs private resorts on the world's quietest coastlines — from first site walk to opening day, with our own architects and our own builders.</p>
     </div>
   </div>
   <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
@@ -354,7 +354,7 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="mailto:studio@marama-resorts.com">studio@marama-resorts.com</a>
+        <a href="mailto:studio@marama-resorts.com">studio@Bold Clay Studio.com</a>
         <a href="tel:+18005551200">+1 800 555 1200</a>
       </div>
       <div>
@@ -364,7 +364,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Marama Studio. All rights reserved.</span>
+      <span>© 2026Bold Clay Studio. All rights reserved.</span>
       <span>Built stage by stage, like everything else we make.</span>
     </div>
   </div>
