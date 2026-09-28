@@ -1,498 +1,437 @@
 /* =========================================================
-   PREMIUM SERVICE MARQUEE
+   BOLD CLAY — HERO
+   SCREENSHOT MATCH DESIGN
+   ALL CLASSES START WITH "er"
 ========================================================= */
 
-.service-marquee {
-
+.er-hero {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  background: #070d1b;
+}
+
+
+/* ---------------------------------------------------------
+   STICKY HERO
+--------------------------------------------------------- */
+
+.er-hero-sticky {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   BACKGROUND IMAGE
+--------------------------------------------------------- */
+
+.er-hero-image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.er-hero-image {
+  position: absolute;
+  inset: 0;
 
   width: 100%;
+  height: 100%;
 
-  height: 66px;
+  object-fit: cover;
+  object-position: center center;
 
-  overflow: hidden;
+  display: block;
 
-  display: flex;
-
-  align-items: center;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--burgundy),
-      var(--burgundy-light),
-      var(--burgundy)
-    );
-
-  border-top:
-    1px solid rgba(220, 173, 101, .20);
-
-  border-bottom:
-    1px solid rgba(220, 173, 101, .20);
-
-  isolation: isolate;
-
+  transform: scale(1.015);
 }
 
 
-/* =========================================================
-   SUBTLE INNER LIGHT
-========================================================= */
+/* ---------------------------------------------------------
+   CINEMATIC DARK OVERLAY
+--------------------------------------------------------- */
 
-.service-marquee::before {
-
-  content: "";
-
+.er-hero-overlay {
   position: absolute;
-
   inset: 0;
 
-  pointer-events: none;
-
   background:
     linear-gradient(
-      90deg,
-      rgba(220,173,101,.08),
-      transparent 25%,
-      transparent 75%,
-      rgba(220,173,101,.08)
+      180deg,
+      rgba(3, 9, 24, 0.78) 0%,
+      rgba(5, 12, 29, 0.36) 30%,
+      rgba(4, 10, 24, 0.18) 52%,
+      rgba(3, 8, 18, 0.66) 100%
     );
 
-  z-index: 2;
-
+  z-index: 1;
 }
 
 
-/* =========================================================
-   EDGE FADE
-========================================================= */
+/* Extra darkening on left side
+   for better text readability */
 
-.service-marquee::after {
-
+.er-hero-image-wrap::after {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
-  pointer-events: none;
-
-  z-index: 5;
-
   background:
     linear-gradient(
       90deg,
-      var(--burgundy) 0%,
-      transparent 8%,
-      transparent 92%,
-      var(--burgundy) 100%
+      rgba(2, 8, 20, 0.48) 0%,
+      rgba(2, 8, 20, 0.20) 42%,
+      rgba(2, 8, 20, 0.02) 75%
     );
 
+  pointer-events: none;
 }
 
 
-/* =========================================================
-   MOVING TRACK
-========================================================= */
+/* ---------------------------------------------------------
+   TOP GOLD LINE
+--------------------------------------------------------- */
 
-.marquee-track {
-
-  display: flex;
-
-  width: max-content;
-
-  flex-shrink: 0;
-
-  will-change: transform;
-
-  animation:
-    marqueeMove 34s linear infinite;
-
-}
-
-
-/* =========================================================
-   GROUP
-========================================================= */
-
-.marquee-group {
-
-  display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-
-}
-
-
-/* =========================================================
-   TEXT
-========================================================= */
-
-.marquee-item {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  white-space: nowrap;
-
-  padding:
-    0 30px;
-
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size: 24px;
-
-  font-style: italic;
-
-  font-weight: 400;
-
-  line-height: 1;
-
-  letter-spacing: -.015em;
-
-  color:
-    var(--cream);
-
-  opacity: .82;
-
-  transition:
-    color .35s ease,
-    opacity .35s ease;
-
-}
-
-
-/* =========================================================
-   DIAMOND
-========================================================= */
-
-.marquee-diamond {
-
-  position: relative;
-
-  width: 7px;
-  height: 7px;
-
-  flex: 0 0 7px;
-
-  background:
-    var(--gold-soft);
-
-  transform:
-    rotate(45deg);
-
-  opacity: .85;
-
-  box-shadow:
-    0 0 0 rgba(220,173,101,0);
-
-}
-
-
-/* =========================================================
-   STAR / SPARKLE ANIMATION
-========================================================= */
-
-.marquee-diamond::before,
-.marquee-diamond::after {
-
-  content: "";
-
+.er-hero-top-line {
   position: absolute;
 
-  left: 50%;
-  top: 50%;
+  left: 3.25%;
+  right: 3.25%;
 
-  background:
-    var(--gold-soft);
-
-  transform:
-    translate(-50%, -50%);
-
-  opacity: 0;
-
-}
-
-
-/* vertical ray */
-
-.marquee-diamond::before {
-
-  width: 1px;
-
-  height: 18px;
-
-}
-
-
-/* horizontal ray */
-
-.marquee-diamond::after {
-
-  width: 18px;
+  top: 99px;
 
   height: 1px;
 
+  background: rgba(220, 173, 101, 0.62);
+
+  z-index: 5;
 }
 
 
-/* =========================================================
-   SPARKLE
-========================================================= */
+/* ---------------------------------------------------------
+   HERO CONTENT
+--------------------------------------------------------- */
 
-.marquee-diamond {
+.er-hero-content {
+  position: absolute;
+
+  left: 3.35%;
+  top: 50%;
+
+  transform: translateY(-25%);
+
+  z-index: 5;
+
+  width: min(650px, 48vw);
+}
+
+
+/* ---------------------------------------------------------
+   EYEBROW
+--------------------------------------------------------- */
+
+.er-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  height: 39px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(190, 124, 32, 0.72);
+
+  border-radius: 999px;
+
+  background: rgba(35, 10, 12, 0.40);
+
+  color: #f0e2d1;
+
+  font-family:
+    "DM Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.24em;
+
+  text-transform: uppercase;
+
+  backdrop-filter: blur(5px);
+}
+
+
+/* diamond */
+
+.er-hero-eyebrow-diamond {
+  color: #dcad65;
+
+  font-size: 13px;
+
+  line-height: 1;
+
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------
+   MAIN TITLE
+--------------------------------------------------------- */
+
+.er-hero-title {
+  margin: 70px 0 0;
+
+  color: #fefcf8;
+
+  font-family:
+    "Playfair Display",
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: clamp(
+    60px,
+    5.2vw,
+    94px
+  );
+
+  font-weight: 400;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
+}
+
+
+/* each line */
+
+.er-hero-title-line {
+  display: block;
+}
+
+
+/* gold word */
+
+.er-hero-gold {
+  color: #dcad65;
+}
+
+
+/* ---------------------------------------------------------
+   BUTTON AREA
+--------------------------------------------------------- */
+
+.er-hero-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 30px;
+
+  margin-top: 68px;
+}
+
+
+/* ---------------------------------------------------------
+   BUTTON
+--------------------------------------------------------- */
+
+.er-hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 232px;
+
+  height: 55px;
+
+  padding: 0 28px;
+
+  border-radius: 999px;
+
+  background: #dcad65;
+
+  color: #541011;
+
+  text-decoration: none;
+
+  font-family:
+    "DM Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.20em;
+
+  text-transform: uppercase;
+
+  transition:
+    transform 0.45s cubic-bezier(.16,1,.3,1),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+.er-hero-button:hover {
+  transform: translateY(-4px);
+
+  background: #e7bd78;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.28);
+}
+
+
+/* arrow */
+
+.er-hero-button-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 20px;
+
+  font-size: 17px;
+
+  transition:
+    transform 0.4s cubic-bezier(.16,1,.3,1);
+}
+
+
+.er-hero-button:hover .er-hero-button-arrow {
+  transform: translate(4px, -4px);
+}
+
+
+/* ---------------------------------------------------------
+   BOTTOM LEFT LOCATION
+--------------------------------------------------------- */
+
+.er-hero-location {
+  position: absolute;
+
+  left: 3.35%;
+  bottom: 39px;
+
+  z-index: 5;
+
+  color: rgba(254, 252, 248, 0.72);
+
+  font-family:
+    "DM Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   SCROLL INDICATOR
+--------------------------------------------------------- */
+
+.er-hero-scroll {
+  position: absolute;
+
+  right: 3.4%;
+  bottom: 37px;
+
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  color: rgba(254, 252, 248, 0.72);
+
+  font-family:
+    "DM Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.20em;
+
+  text-transform: uppercase;
+}
+
+
+.er-hero-scroll-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid rgba(220, 173, 101, 0.60);
+
+  border-radius: 50%;
+
+  color: #dcad65;
+
+  font-size: 15px;
 
   animation:
-    diamondTwinkle 2.8s ease-in-out infinite;
-
+    erHeroScrollMove 1.8s ease-in-out infinite;
 }
 
 
-/* Different timing for each diamond */
-
-.marquee-group
-.marquee-diamond:nth-of-type(2) {
-
-  animation-delay: .15s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(4) {
-
-  animation-delay: .75s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(6) {
-
-  animation-delay: 1.3s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(8) {
-
-  animation-delay: 1.9s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(10) {
-
-  animation-delay: .45s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(12) {
-
-  animation-delay: 1.1s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(14) {
-
-  animation-delay: 1.65s;
-
-}
-
-
-.marquee-group
-.marquee-diamond:nth-of-type(16) {
-
-  animation-delay: 2.2s;
-
-}
-
-
-/* =========================================================
-   TWINKLE KEYFRAMES
-========================================================= */
-
-@keyframes diamondTwinkle {
+@keyframes erHeroScrollMove {
 
   0%,
-  72% {
-
-    transform:
-      rotate(45deg)
-      scale(1);
-
-    opacity: .75;
-
-    box-shadow:
-      0 0 0 rgba(220,173,101,0);
-
-  }
-
-  78% {
-
-    transform:
-      rotate(45deg)
-      scale(1.55);
-
-    opacity: 1;
-
-    box-shadow:
-      0 0 8px rgba(220,173,101,.75),
-      0 0 18px rgba(220,173,101,.35);
-
-  }
-
-  84% {
-
-    transform:
-      rotate(45deg)
-      scale(.8);
-
-    opacity: .55;
-
-    box-shadow:
-      0 0 3px rgba(220,173,101,.3);
-
-  }
-
-  90% {
-
-    transform:
-      rotate(45deg)
-      scale(1.1);
-
-    opacity: .9;
-
-  }
-
   100% {
+    transform: translateY(0);
+  }
 
-    transform:
-      rotate(45deg)
-      scale(1);
-
-    opacity: .75;
-
-    box-shadow:
-      0 0 0 rgba(220,173,101,0);
-
+  50% {
+    transform: translateY(5px);
   }
 
 }
 
 
 /* =========================================================
-   SPARK RAYS ANIMATION
+   TABLET
 ========================================================= */
 
-.marquee-diamond::before,
-.marquee-diamond::after {
+@media (max-width: 1100px) {
 
-  animation:
-    sparkleRay 2.8s ease-in-out infinite;
-
-}
-
-
-@keyframes sparkleRay {
-
-  0%,
-  70%,
-  100% {
-
-    opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(.3);
-
+  .er-hero-content {
+    width: 62vw;
   }
 
-  79% {
-
-    opacity: .9;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-
+  .er-hero-title {
+    font-size: clamp(
+      55px,
+      7vw,
+      82px
+    );
   }
 
-  87% {
-
-    opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1.4);
-
+  .er-hero-actions {
+    margin-top: 52px;
   }
-
-}
-
-
-/* =========================================================
-   SEAMLESS LEFT MOVEMENT
-========================================================= */
-
-@keyframes marqueeMove {
-
-  from {
-
-    transform:
-      translate3d(0, 0, 0);
-
-  }
-
-  to {
-
-    transform:
-      translate3d(-50%, 0, 0);
-
-  }
-
-}
-
-
-/* =========================================================
-   HOVER
-========================================================= */
-
-.service-marquee:hover
-.marquee-track {
-
-  animation-play-state:
-    paused;
-
-}
-
-
-.service-marquee:hover
-.marquee-item {
-
-  opacity: .48;
-
-}
-
-
-.service-marquee:hover
-.marquee-item:hover {
-
-  opacity: 1;
-
-  color:
-    var(--gold-soft);
 
 }
 
@@ -501,69 +440,117 @@
    MOBILE
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
 
-  .service-marquee {
-
-    height: 54px;
-
+  .er-hero {
+    min-height: 720px;
+    height: 100svh;
   }
 
 
-  .marquee-item {
-
-    padding:
-      0 21px;
-
-    font-size:
-      18px;
-
+  .er-hero-image {
+    object-position: 58% center;
   }
 
 
-  .marquee-diamond {
-
-    width: 6px;
-    height: 6px;
-
-    flex-basis: 6px;
-
+  .er-hero-top-line {
+    left: 22px;
+    right: 22px;
+    top: 92px;
   }
 
 
-  .marquee-diamond::before {
+  .er-hero-content {
+    left: 22px;
+    right: 22px;
+    top: 48%;
 
-    height: 14px;
+    width: auto;
 
+    transform: translateY(-20%);
   }
 
 
-  .marquee-diamond::after {
+  .er-hero-eyebrow {
+    height: 35px;
 
-    width: 14px;
+    padding: 0 13px;
 
+    font-size: 9px;
+
+    letter-spacing: 0.16em;
   }
 
 
-  .marquee-track {
+  .er-hero-title {
+    margin-top: 42px;
 
-    animation-duration:
-      26s;
+    font-size: clamp(
+      46px,
+      13vw,
+      68px
+    );
 
+    line-height: 0.99;
+
+    letter-spacing: -0.045em;
   }
 
 
-  .service-marquee::after {
+  .er-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
 
-    background:
-      linear-gradient(
-        90deg,
-        var(--burgundy) 0%,
-        transparent 13%,
-        transparent 87%,
-        var(--burgundy) 100%
-      );
+    gap: 12px;
 
+    margin-top: 42px;
+  }
+
+
+  .er-hero-button {
+    min-width: 205px;
+
+    height: 51px;
+
+    padding: 0 22px;
+
+    font-size: 9px;
+  }
+
+
+  .er-hero-location {
+    left: 22px;
+    bottom: 24px;
+
+    font-size: 7px;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  .er-hero-scroll {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .er-hero-title {
+    font-size: 44px;
+  }
+
+  .er-hero-eyebrow {
+    font-size: 8px;
+  }
+
+  .er-hero-button {
+    min-width: 195px;
   }
 
 }
@@ -575,21 +562,11 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .marquee-track {
-
-    animation:
-      none;
-
-  }
-
-
-  .marquee-diamond,
-  .marquee-diamond::before,
-  .marquee-diamond::after {
-
-    animation:
-      none;
-
+  .er-hero-scroll-arrow,
+  .er-hero-button,
+  .er-hero-button-arrow {
+    animation: none !important;
+    transition: none !important;
   }
 
 }
