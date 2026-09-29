@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Dharamshala — cottages and hybrid houses by Bold Clay Studios">
+    <title>Dharamshala — Bold Clay Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --burgundy: #541011;
+            --deep: #450509;
+            --burgundy2: #721A1B;
+            --gold: #BE7C20;
+            --gold-soft: #DCAD65;
+            --ivory: #FEFCF8;
+            --cream: #F0E2D1;
+            --ink: #2b211f;
+            --muted: #887873;
+            --line: rgba(84, 16, 17, .14);
+            --ease: cubic-bezier(.22, 1, .36, 1)
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--ivory);
+            color: var(--ink);
+            font-family: "DM Sans", Arial, sans-serif;
+            overflow-x: hidden
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        img {
+            display: block;
+            width: 100%
+        }
+
+        /* loader */
+        .ds-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--deep);
+            display: grid;
+            place-items: center;
+            transition: .7s var(--ease)
+        }
+
+        .ds-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
+
+        .ds-loader-inner {
+            text-align: center
+        }
+
+        .ds-loader-diamond {
+            width: 43px;
+            height: 43px;
+            border: 1px solid rgba(220, 173, 101, .45);
+            transform: rotate(45deg);
+            margin: 0 auto 23px;
+            position: relative
+        }
+
+        .ds-loader-diamond:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            left: 15px;
+            top: 15px;
+            background: var(--gold);
+            animation: dsPulse 1.2s infinite
+        }
+
+        .ds-loader-label {
+            font-size: 8px;
+            letter-spacing: .34em;
+            text-transform: uppercase;
+            color: #eaded4
+        }
+
+        @keyframes dsPulse {
+            50% {
+                transform: scale(.45);
+                opacity: .4
+            }
+        }
+
+        /* navigation */
+        .ds-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            color: #fff;
+            padding: 24px 0
+        }
+
+        .ds-nav-inner {
+            width: min(1180px, calc(100% - 48px));
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, .23);
+            padding-bottom: 17px
+        }
+
+        .ds-back {
+            font-size: 8px;
+            letter-spacing: .21em;
+            text-transform: uppercase;
+            transition: .3s
+        }
+
+        .ds-back:hover {
+            color: var(--gold-soft);
+            transform: translateX(-4px)
+        }
+
+        .ds-case {
+            font-size: 8px;
+            letter-spacing: .27em;
+            opacity: .75
+        }
+
+        /* hero */
+        .ds-hero {
+            height: 91vh;
+            min-height: 650px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            background: #27201e
+        }
+
+        .ds-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.055);
+            animation: dsHero 1.5s var(--ease) forwards;
+            filter: saturate(.88)
+        }
+
+        .ds-hero:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(28, 12, 9, .37), transparent 43%, rgba(28, 10, 8, .78))
+        }
+
+        @keyframes dsHero {
+            to {
+                transform: scale(1)
+            }
+        }
+
+        .ds-hero-content {
+            position: relative;
+            z-index: 2;
+            width: min(1180px, calc(100% - 48px));
+            margin: auto;
+            padding-bottom: clamp(72px, 9vw, 122px);
+            color: #fff
+        }
+
+        .ds-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 9px;
+            letter-spacing: .27em;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: dsRise .8s .18s var(--ease) forwards
+        }
+
+        .ds-eyebrow i {
+            display: block;
+            width: 48px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        .ds-title {
+            font: 500 clamp(70px, 12vw, 158px)/.72 "Cormorant Garamond", serif;
+            letter-spacing: -.055em;
+            margin-top: 19px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: dsRise 1s .32s var(--ease) forwards
+        }
+
+        .ds-meta {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-top: 28px;
+            font-size: 9px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #eaded7;
+            opacity: 0;
+            animation: dsRise .8s .52s var(--ease) forwards
+        }
+
+        .ds-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold)
+        }
+
+        .ds-scroll {
+            position: absolute;
+            right: 25px;
+            bottom: 30px;
+            z-index: 3;
+            writing-mode: vertical-rl;
+            font-size: 8px;
+            letter-spacing: .2em;
+            color: #fff;
+            opacity: .64
+        }
+
+        .ds-scroll:after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 52px;
+            background: #fff;
+            margin: 12px auto 0;
+            animation: dsLine 1.7s infinite
+        }
+
+        @keyframes dsRise {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @keyframes dsLine {
+
+            0%,
+            100% {
+                transform: scaleY(.2)
+            }
+
+            50% {
+                transform: scaleY(1)
+            }
+        }
+
+        /* introduction */
+        .ds-wrap {
+            width: min(1180px, calc(100% - 48px));
+            margin: auto
+        }
+
+        .ds-intro {
+            padding: clamp(95px, 11vw, 150px) 0
+        }
+
+        .ds-intro-grid {
+            display: grid;
+            grid-template-columns: .78fr 1.35fr;
+            gap: clamp(55px, 10vw, 150px)
+        }
+
+        .ds-kicker {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: .27em;
+            text-transform: uppercase
+        }
+
+        .ds-kicker:before {
+            content: "";
+            width: 35px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        .ds-h2 {
+            font: 500 clamp(46px, 6vw, 79px)/.88 "Cormorant Garamond";
+            letter-spacing: -.04em;
+            color: var(--burgundy);
+            margin-top: 18px
+        }
+
+        .ds-copy {
+            font-size: clamp(16px, 1.5vw, 20px);
+            line-height: 1.75;
+            color: #514543
+        }
+
+        .ds-copy strong {
+            color: var(--burgundy)
+        }
+
+        /* project types */
+        .ds-types {
+            background: var(--deep);
+            color: #fff;
+            padding: clamp(95px, 12vw, 160px) 0;
+            position: relative;
+            overflow: hidden
+        }
+
+        .ds-types:after {
+            content: "DHARAMSHALA";
+            position: absolute;
+            right: -35px;
+            bottom: -48px;
+            font: 500 17vw/.7 "Cormorant Garamond";
+            color: rgba(255, 255, 255, .025);
+            pointer-events: none
+        }
+
+        .ds-type-head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            margin-bottom: 50px
+        }
+
+        .ds-white-title {
+            font: 500 clamp(46px, 6vw, 80px)/.87 "Cormorant Garamond";
+            letter-spacing: -.045em
+        }
+
+        .ds-white-title span {
+            color: var(--gold-soft)
+        }
+
+        .ds-type-intro {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #d5c7c2;
+            max-width: 490px
+        }
+
+        .ds-type-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        .ds-type-card {
+            min-height: 390px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, .025);
+            transition: .6s var(--ease)
+        }
+
+        .ds-type-card:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, .45));
+            opacity: .8
+        }
+
+        .ds-type-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(220, 173, 101, .55)
+        }
+
+        .ds-type-card>* {
+            position: relative;
+            z-index: 2
+        }
+
+        .ds-type-number {
+            font-size: 9px;
+            letter-spacing: .25em;
+            color: var(--gold-soft);
+            margin-bottom: auto
+        }
+
+        .ds-type-title {
+            font: 500 clamp(38px, 4vw, 58px)/.85 "Cormorant Garamond";
+            margin-bottom: 14px
+        }
+
+        .ds-type-desc {
+            font-size: 11px;
+            line-height: 1.7;
+            color: #d4c5bf;
+            max-width: 410px
+        }
+
+        .ds-type-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px
+        }
+
+        .ds-type-list span {
+            font-size: 7px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            border: 1px solid rgba(220, 173, 101, .3);
+            padding: 8px 10px;
+            color: #e3c89c
+        }
+
+        /* facts */
+        .ds-facts {
+            padding: 0 0 clamp(95px, 12vw, 155px)
+        }
+
+        .ds-fact-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .ds-fact {
+            padding: 28px 19px;
+            min-height: 124px;
+            border-right: 1px solid var(--line)
+        }
+
+        .ds-fact:last-child {
+            border-right: 0
+        }
+
+        .ds-label {
+            font-size: 8px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 13px
+        }
+
+        .ds-value {
+            font: 500 21px/1.02 "Cormorant Garamond";
+            color: var(--burgundy)
+        }
+
+        .ds-note {
+            font-size: 8px;
+            line-height: 1.45;
+            color: #877773;
+            margin-top: 7px
+        }
+
+        /* visual story */
+        .ds-gallery {
+            padding: clamp(95px, 12vw, 160px) 0;
+            background: #f7f0e8
+        }
+
+        .ds-gallery-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 43px
+        }
+
+        .ds-gallery-title {
+            font: 500 clamp(46px, 6vw, 80px)/.87 "Cormorant Garamond";
+            letter-spacing: -.04em;
+            color: var(--burgundy)
+        }
+
+        .ds-gallery-note {
+            max-width: 360px;
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted)
+        }
+
+        .ds-gallery-grid {
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 18px
+        }
+
+        .ds-photo {
+            overflow: hidden;
+            position: relative;
+            background: #ddd
+        }
+
+        .ds-photo img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s var(--ease), filter .6s
+        }
+
+        .ds-photo:hover img {
+            transform: scale(1.045);
+            filter: saturate(1.06)
+        }
+
+        .ds-main-photo {
+            height: 680px
+        }
+
+        .ds-side-photos {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 18px
+        }
+
+        .ds-side-photo {
+            height: 331px
+        }
+
+        .ds-caption {
+            position: absolute;
+            left: 17px;
+            bottom: 16px;
+            color: #fff;
+            text-shadow: 0 1px 14px #000;
+            font-size: 8px;
+            letter-spacing: .19em;
+            text-transform: uppercase
+        }
+
+        .ds-caption:before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: var(--gold-soft);
+            margin-right: 8px;
+            vertical-align: middle
+        }
+
+        /* approach */
+        .ds-approach {
+            padding: clamp(95px, 12vw, 160px) 0
+        }
+
+        .ds-approach-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.2fr;
+            gap: clamp(55px, 10vw, 145px)
+        }
+
+        .ds-approach-title {
+            font: 500 clamp(46px, 6vw, 80px)/.87 "Cormorant Garamond";
+            letter-spacing: -.04em;
+            color: var(--burgundy)
+        }
+
+        .ds-approach-copy {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #584b48
+        }
+
+        .ds-approach-copy p+p {
+            margin-top: 20px
+        }
+
+        .ds-points {
+            border-top: 1px solid var(--line);
+            margin-top: 34px
+        }
+
+        .ds-point {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 12px;
+            padding: 19px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .ds-point-no {
+            font-size: 9px;
+            color: var(--gold)
+        }
+
+        .ds-point strong {
+            font: 500 22px "Cormorant Garamond";
+            color: var(--burgundy)
+        }
+
+        .ds-point span {
+            display: block;
+            font-size: 10px;
+            line-height: 1.55;
+            color: var(--muted);
+            margin-top: 4px
+        }
+
+        /* challenges */
+        .ds-challenges {
+            background: var(--cream);
+            padding: clamp(90px, 11vw, 145px) 0
+        }
+
+        .ds-challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px
+        }
+
+        .ds-challenge-title {
+            font: 500 clamp(45px, 6vw, 77px)/.87 "Cormorant Garamond";
+            color: var(--burgundy);
+            letter-spacing: -.04em
+        }
+
+        .ds-challenge-copy {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #594d4a
+        }
+
+        .ds-challenge-copy p+p {
+            margin-top: 20px
+        }
+
+        .ds-challenge-list {
+            margin-top: 30px
+        }
+
+        .ds-challenge-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(84, 16, 17, .14)
+        }
+
+        .ds-challenge-item b {
+            color: var(--gold);
+            font-size: 10px
+        }
+
+        .ds-challenge-item span {
+            font-size: 11px;
+            color: #574a47
+        }
+
+        /* CTA */
+        .ds-cta {
+            padding: clamp(90px, 11vw, 135px) 18px;
+            text-align: center;
+            background: var(--ivory)
+        }
+
+        .ds-cta-kicker {
+            font-size: 9px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold)
+        }
+
+        .ds-cta h2 {
+            font: 500 clamp(48px, 7vw, 92px)/.87 "Cormorant Garamond";
+            color: var(--burgundy);
+            letter-spacing: -.045em;
+            max-width: 930px;
+            margin: 18px auto 30px
+        }
+
+        .ds-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+            background: var(--burgundy);
+            color: #fff;
+            padding: 15px 24px;
+            font-size: 9px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            transition: .35s var(--ease)
+        }
+
+        .ds-btn:hover {
+            transform: translateY(-4px);
+            background: var(--burgundy2)
+        }
+
+        .ds-btn b {
+            font-size: 14px;
+            color: var(--gold-soft)
+        }
+
+        /* reveal */
+        .ds-reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity .9s var(--ease), transform .9s var(--ease)
+        }
+
+        .ds-reveal.show {
+            opacity: 1;
+            transform: none
+        }
+
+        /* footer */
+        .bc-footer {
+            background: #2d0e15;
+            color: #b8a6a9;
+            overflow: hidden
+        }
+
+        .bc-footer-inner {
+            width: calc(100% - 176px);
+            margin: auto;
+            min-height: 205px;
+            padding: 48px 0 35px;
+            display: grid;
+            grid-template-columns: 1fr 1fr
+        }
+
+        .bc-footer-brand {
+            display: flex;
+            flex-direction: column
+        }
+
+        .bc-brand-row {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        .bc-logo {
+            width: 60px;
+            height: 67px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(177, 92, 62, .17);
+            border: 1px solid rgba(186, 116, 70, .2)
+        }
+
+        .bc-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain
+        }
+
+        .bc-brand-title {
+            color: #eee6e2;
+            font: 400 27px Georgia;
+            letter-spacing: 3.5px
+        }
+
+        .bc-brand-studios {
+            margin-top: 8px;
+            color: #bd783f;
+            font: 400 11px "Courier New";
+            letter-spacing: 4.5px
+        }
+
+        .bc-footer-description {
+            margin-top: 25px;
+            color: #bca9aa;
+            font: 400 17px/1.4 "Cormorant Garamond", Georgia
+        }
+
+        .bc-footer-info {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            padding-left: 80px
+        }
+
+        .bc-footer-heading {
+            color: #d08b50;
+            font: 500 9px "DM Sans";
+            letter-spacing: 3px;
+            margin-bottom: 20px
+        }
+
+        .bc-footer-column a {
+            display: block;
+            margin-bottom: 13px;
+            color: #b8a7aa;
+            font: 400 16px/1.25 Arial;
+            transition: .25s
+        }
+
+        .bc-footer-column a:hover {
+            color: #d08b50;
+            transform: translateX(3px)
+        }
+
+        .bc-address {
+            max-width: 470px;
+            color: #b8a7aa;
+            font: 400 16px/1.5 Arial
+        }
+
+        .bc-footer-divider {
+            width: calc(100% - 176px);
+            height: 1px;
+            margin: auto;
+            background: rgba(157, 108, 65, .28)
+        }
+
+        .bc-footer-bottom {
+            width: calc(100% - 176px);
+            min-height: 44px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .bc-copyright,
+        .bc-tagline {
+            color: #817075;
+            font: 400 10px "Courier New";
+            letter-spacing: 1.8px
+        }
+
+        .bc-tagline {
+            color: #a98d8f
+        }
+
+        @media(max-width:900px) {
+
+            .ds-wrap,
+            .ds-nav-inner,
+            .ds-hero-content {
+                width: calc(100% - 40px)
+            }
+
+            .ds-intro-grid,
+            .ds-type-head,
+            .ds-approach-grid,
+            .ds-challenge-grid {
+                grid-template-columns: 1fr;
+                gap: 45px
+            }
+
+            .ds-type-grid {
+                grid-template-columns: 1fr
+            }
+
+            .ds-fact-grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .ds-fact:nth-child(3) {
+                border-right: 0
+            }
+
+            .ds-fact:nth-child(-n+3) {
+                border-bottom: 1px solid var(--line)
+            }
+
+            .ds-gallery-grid {
+                grid-template-columns: 1fr
+            }
+
+            .ds-main-photo {
+                height: 70vw
+            }
+
+            .ds-side-photos {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: none
+            }
+
+            .ds-side-photo {
+                height: 40vw
+            }
+
+            .bc-footer-inner {
+                width: calc(100% - 80px);
+                grid-template-columns: 1fr
+            }
+
+            .bc-footer-info {
+                padding-left: 0;
+                margin-top: 45px;
+                grid-template-columns: 160px 1fr
+            }
+
+            .bc-footer-divider,
+            .bc-footer-bottom {
+                width: calc(100% - 80px)
+            }
+        }
+
+        @media(max-width:600px) {
+
+            .ds-wrap,
+            .ds-nav-inner,
+            .ds-hero-content {
+                width: calc(100% - 32px)
+            }
+
+            .ds-nav {
+                padding: 18px 0
+            }
+
+            .ds-nav-inner {
+                padding-bottom: 13px
+            }
+
+            .ds-back,
+            .ds-case {
+                font-size: 7px
+            }
+
+            .ds-hero {
+                height: 82vh;
+                min-height: 570px
+            }
+
+            .ds-title {
+                font-size: 22vw
+            }
+
+            .ds-meta {
+                font-size: 8px;
+                flex-wrap: wrap
+            }
+
+            .ds-scroll {
+                display: none
+            }
+
+            .ds-intro,
+            .ds-types,
+            .ds-gallery,
+            .ds-approach,
+            .ds-challenges {
+                padding: 80px 0
+            }
+
+            .ds-copy {
+                font-size: 16px
+            }
+
+            .ds-type-card {
+                min-height: 390px;
+                padding: 27px
+            }
+
+            .ds-fact-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .ds-fact {
+                padding: 22px 14px;
+                min-height: 108px
+            }
+
+            .ds-fact:nth-child(3) {
+                border-right: 1px solid var(--line)
+            }
+
+            .ds-fact:nth-child(4) {
+                border-right: 0
+            }
+
+            .ds-fact:nth-child(-n+4) {
+                border-bottom: 1px solid var(--line)
+            }
+
+            .ds-fact:last-child {
+                border-bottom: 0
+            }
+
+            .ds-gallery-head {
+                display: block;
+                margin-bottom: 30px
+            }
+
+            .ds-gallery-note {
+                margin-top: 16px
+            }
+
+            .ds-main-photo {
+                height: 112vw
+            }
+
+            .ds-side-photos {
+                gap: 10px
+            }
+
+            .ds-side-photo {
+                height: 53vw
+            }
+
+            .ds-cta {
+                padding: 80px 16px
+            }
+
+            .ds-cta h2 {
+                font-size: 51px
+            }
+
+            .bc-footer-inner {
+                width: calc(100% - 40px);
+                padding-top: 38px
+            }
+
+            .bc-brand-row {
+                gap: 13px
+            }
+
+            .bc-logo {
+                width: 52px;
+                height: 58px
+            }
+
+            .bc-brand-title {
+                font-size: 21px;
+                letter-spacing: 2.5px
+            }
+
+            .bc-brand-studios {
+                font-size: 9px;
+                letter-spacing: 3.5px
+            }
+
+            .bc-footer-description {
+                font-size: 16px;
+                margin-top: 20px
+            }
+
+            .bc-footer-info {
+                grid-template-columns: 1fr 1.45fr;
+                gap: 20px;
+                margin-top: 35px
+            }
+
+            .bc-footer-heading {
+                font-size: 9px;
+                margin-bottom: 18px
+            }
+
+            .bc-footer-column a,
+            .bc-address {
+                font-size: 13px
+            }
+
+            .bc-footer-divider,
+            .bc-footer-bottom {
+                width: calc(100% - 40px)
+            }
+
+            .bc-footer-bottom {
+                padding: 15px 0 18px;
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 9px
+            }
+
+            .bc-copyright,
+            .bc-tagline {
+                font-size: 8px;
+                letter-spacing: 1.2px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+
+            *,
+            *:before,
+            *:after {
+                animation: none !important;
+                transition: none !important
+            }
+
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="ds-loader" id="dsLoader">
+        <div class="ds-loader-inner">
+            <div class="ds-loader-diamond"></div>
+            <div class="ds-loader-label">Bold Clay Studios</div>
+        </div>
+    </div> -->
+
+    <nav class="ds-nav">
+        <div class="ds-nav-inner">
+            <a class="ds-back" href="index.html#projects">← Back to selected works</a>
+            <div class="ds-case">Case study / 05</div>
+        </div>
+    </nav>
+
+    <section class="ds-hero">
+        <img class="ds-hero-img" src="./dharmshala/hero.png" alt="Dharamshala forest cottages">
+        <div class="ds-hero-content">
+            <div class="ds-eyebrow"><i></i> Farmhouse · Completed</div>
+            <h1 class="ds-title">Dharamshala</h1>
+            <div class="ds-meta"><span>Himachal Pradesh</span><span class="ds-dot"></span><span>2024</span></div>
+        </div>
+        <div class="ds-scroll">Explore project</div>
+    </section>
+
+    <section class="ds-intro">
+        <div class="ds-wrap">
+            <div class="ds-intro-grid ds-reveal">
+                <div>
+                    <div class="ds-kicker">Project 05 / Selected Work</div>
+                    <h2 class="ds-h2">Two ways of living, one mountain landscape.</h2>
+                </div>
+                <div class="ds-copy">
+                    <strong>Dharamshala</strong> is presented as a completed project combining two distinct
+                    accommodation directions:
+                    <strong>forest cottages</strong> and <strong>hybrid houses</strong>.
+                    The project language is rooted in the supplied visual — compact timber-clad volumes, pitched roofs,
+                    generous openings and a close relationship with the pine landscape.
+                    <br><br>
+                    Rather than forcing both formats into one architectural expression, the case study treats them as
+                    two related typologies designed for different ways of inhabiting the same mountain setting.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-types">
+        <div class="ds-wrap">
+            <div class="ds-type-head ds-reveal">
+                <div>
+                    <div class="ds-kicker">01 / Two Project Types</div>
+                    <h2 class="ds-white-title">Cottages + <span>Hybrid Houses.</span></h2>
+                </div>
+                <p class="ds-type-intro">
+                    The Dharamshala project can be presented as a small family of structures rather than a single
+                    building. The two types share the same landscape-first character while serving different spatial
+                    requirements.
+                </p>
+            </div>
+
+            <div class="ds-type-grid">
+                <article class="ds-type-card ds-reveal">
+                    <div class="ds-type-number">TYPE 01 / COTTAGES</div>
+                    <div>
+                        <h3 class="ds-type-title">Forest Cottages</h3>
+                        <p class="ds-type-desc">
+                            Compact retreat units designed to sit lightly among the trees. The visual language focuses
+                            on warm timber surfaces, simple pitched forms, private outlooks and a strong sense of being
+                            inside the forest.
+                        </p>
+                        <div class="ds-type-list">
+                            <span>Compact Living</span><span>Timber Character</span><span>Forest Views</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="ds-type-card ds-reveal">
+                    <div class="ds-type-number">TYPE 02 / HYBRID HOUSES</div>
+                    <div>
+                        <h3 class="ds-type-title">Hybrid Houses</h3>
+                        <p class="ds-type-desc">
+                            A larger residential format combining the warmth of a mountain cabin with more generous
+                            living areas, outdoor connections and flexible spaces for longer stays or family use.
+                        </p>
+                        <div class="ds-type-list">
+                            <span>Expanded Living</span><span>Indoor / Outdoor</span><span>Flexible Spaces</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-facts">
+        <div class="ds-wrap">
+            <div class="ds-fact-grid ds-reveal">
+                <div class="ds-fact">
+                    <div class="ds-label">Location</div>
+                    <div class="ds-value">Himachal Pradesh</div>
+                    <div class="ds-note">Dharamshala · 2024</div>
+                </div>
+                <div class="ds-fact">
+                    <div class="ds-label">Project Type</div>
+                    <div class="ds-value">Cottages + Hybrid Houses</div>
+                    <div class="ds-note">Two accommodation typologies</div>
+                </div>
+                <div class="ds-fact">
+                    <div class="ds-label">Status</div>
+                    <div class="ds-value">Completed</div>
+                    <div class="ds-note">As shown in selected works</div>
+                </div>
+                <div class="ds-fact">
+                    <div class="ds-label">Material Direction</div>
+                    <div class="ds-value">Timber-led</div>
+                    <div class="ds-note">Visible character in supplied image</div>
+                </div>
+                <div class="ds-fact">
+                    <div class="ds-label">Build Duration</div>
+                    <div class="ds-value">Add Data</div>
+                    <div class="ds-note">Replace with confirmed duration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-gallery">
+        <div class="ds-wrap">
+            <div class="ds-gallery-head ds-reveal">
+                <div>
+                    <div class="ds-kicker">02 / Visual Story</div>
+                    <h2 class="ds-gallery-title">Cabins that disappear<br>into the forest.</h2>
+                </div>
+                <p class="ds-gallery-note">
+                    Your supplied project image is used as the primary visual. The supporting frames intentionally use
+                    different crops until additional Dharamshala project photographs are added.
+                </p>
+            </div>
+
+            <div class="ds-gallery-grid ds-reveal">
+                <figure class="ds-photo ds-main-photo">
+                    <img src="./dharmshala/dh1.png" alt="Dharamshala forest cottages">
+                    <figcaption class="ds-caption">01 / Forest settlement</figcaption>
+                </figure>
+
+                <div class="ds-side-photos">
+                    <figure class="ds-photo ds-side-photo">
+                        <img src="./dharmshala/dh2.png" alt="Dharamshala cottage detail">
+                        <figcaption class="ds-caption">02 / Cottage cluster</figcaption>
+                    </figure>
+                    <figure class="ds-photo ds-side-photo">
+                        <img src="./dharmshala/dh3.png" alt="Dharamshala hybrid house landscape">
+                        <figcaption class="ds-caption">03 / Landscape connection</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-approach">
+        <div class="ds-wrap">
+            <div class="ds-approach-grid ds-reveal">
+                <div>
+                    <div class="ds-kicker">03 / Design Approach</div>
+                    <h2 class="ds-approach-title">Build less like a resort. Live more like a mountain home.</h2>
+                </div>
+
+                <div class="ds-approach-copy">
+                    <p>
+                        The supplied image suggests a deliberately low-key architectural language: timber-clad volumes,
+                        simple roof geometries and small building footprints distributed through an existing pine
+                        landscape.
+                    </p>
+                    <p>
+                        For the case-study story, the cottages and hybrid houses are presented as a coordinated system —
+                        allowing the project to offer different scales of stay without losing a consistent visual
+                        identity.
+                    </p>
+
+                    <div class="ds-points">
+                        <div class="ds-point">
+                            <div class="ds-point-no">01</div>
+                            <div><strong>Forest Integration</strong><span>Buildings are positioned as individual volumes
+                                    within the landscape rather than one dominant block.</span></div>
+                        </div>
+                        <div class="ds-point">
+                            <div class="ds-point-no">02</div>
+                            <div><strong>Warm Material Language</strong><span>Timber-led surfaces create a softer
+                                    relationship with the surrounding trunks, earth and vegetation.</span></div>
+                        </div>
+                        <div class="ds-point">
+                            <div class="ds-point-no">03</div>
+                            <div><strong>Two Scales of Stay</strong><span>Cottages provide an intimate retreat format
+                                    while hybrid houses support more generous living requirements.</span></div>
+                        </div>
+                        <div class="ds-point">
+                            <div class="ds-point-no">04</div>
+                            <div><strong>Outdoor Connection</strong><span>Terraces, openings and low-rise volumes help
+                                    keep the forest experience visible from everyday spaces.</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-challenges">
+        <div class="ds-wrap">
+            <div class="ds-challenge-grid ds-reveal">
+                <div>
+                    <div class="ds-kicker">04 / Project Challenges</div>
+                    <h2 class="ds-challenge-title">The mountain becomes part of the brief.</h2>
+                </div>
+
+                <div class="ds-challenge-copy">
+                    <p>
+                        Because the source material does not provide the project's documented construction challenges,
+                        this section is intentionally framed around the visible design conditions rather than claiming
+                        unverified site facts.
+                    </p>
+                    <p>
+                        The case study can later be updated with the actual site constraints, access conditions,
+                        weather, foundation strategy and construction timeline from your project records.
+                    </p>
+
+                    <div class="ds-challenge-list">
+                        <div class="ds-challenge-item"><b>01</b><span>Working sensitively within a dense forest
+                                setting.</span></div>
+                        <div class="ds-challenge-item"><b>02</b><span>Balancing compact cottage footprints with
+                                comfortable living.</span></div>
+                        <div class="ds-challenge-item"><b>03</b><span>Creating two building types without losing one
+                                project identity.</span></div>
+                        <div class="ds-challenge-item"><b>04</b><span>Maintaining a strong relationship between
+                                interiors, decks and landscape.</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-cta">
+        <div class="ds-cta-kicker">Planning a mountain project?</div>
+        <h2>Let's build something that belongs to the landscape.</h2>
+        <a class="ds-btn" href="index.html#contact">Start a conversation <b>↗</b></a>
+    </section>
+
+    <footer class="bc-footer">
+        <div class="bc-footer-inner">
+            <div class="bc-footer-brand">
+                <div class="bc-brand-row">
+                    <div class="bc-logo"><img src="logo.png" alt="Bold Clay Studios"></div>
+                    <div>
+                        <div class="bc-brand-title">BOLD CLAY</div>
+                        <div class="bc-brand-studios">STUDIOS</div>
+                    </div>
+                </div>
+                <div class="bc-footer-description">Building Stories, not just spaces.</div>
+            </div>
+
+            <div class="bc-footer-info">
+                <div class="bc-footer-column">
+                    <div class="bc-footer-heading">EXPLORE</div>
+                    <a href="index.html#home">Home</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="bc-footer-column">
+                    <div class="bc-footer-heading">STUDIO</div>
+                    <a href="tel:+917206063723">+9172060 63723</a>
+                    <a href="mailto:studio.boldclay@gmail.com">studio.boldclay@gmail.com</a>
+                    <div class="bc-address">E-53 Basement, Greater Kailash-II, New Delhi — 110048</div>
+                </div>
+            </div>
+        </div>
+        <div class="bc-footer-divider"></div>
+        <div class="bc-footer-bottom">
+            <div class="bc-copyright">© 2026 BOLD CLAY STUDIOS · DELHI NCR</div>
+            <div class="bc-tagline">BOLD BY NATURE. BUILT WITH PURPOSE.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loader = document.getElementById("dsLoader");
+            setTimeout(() => loader.classList.add("hide"), 850);
+
+            const items = document.querySelectorAll(".ds-reveal");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: .12, rootMargin: "0px 0px -55px 0px" });
+            items.forEach(item => observer.observe(item));
+
+            if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
+                const hero = document.querySelector(".ds-hero-img");
+                addEventListener("scroll", () => {
+                    const y = Math.min(scrollY, innerHeight) * .025;
+                    hero.style.transform = `scale(1.035) translateY(${y}px)`;
+                }, { passive: true });
+            }
+        });
+    </script>
+</body>
+
+</html>
